@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 
+//These are variables we can create in our config file, when our hardware cooperates.
 public class MyFIRSTJavaOpMode extends LinearOpMode {
     private Gyroscope imu;
     private DcMotor motorTest;
@@ -17,6 +18,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
 
 
     @Override
+    //Every LinearOpMode needs this.  HardwareMap is finding the devices on the config file.
     public void runOpMode() {
         imu = hardwareMap.get(Gyroscope.class, "imu");
         motorTest = hardwareMap.get(DcMotor.class, "motorTest");
@@ -27,6 +29,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
+        //All linear opModes should have this so they don't start until you press start.
         waitForStart();
 
         // run until the end of the match (driver presses STOP)

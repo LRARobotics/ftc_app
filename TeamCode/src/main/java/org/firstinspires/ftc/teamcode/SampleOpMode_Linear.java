@@ -49,7 +49,8 @@ import com.qualcomm.robotcore.util.Range;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-
+// A - They say Linear OpModes are easier for beginners to understand, but personally I like iterative
+// A - OpModes a lot more.  I will not put any comments in here.  Iterative v Linear is coder's preference.
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
 @Disabled
 public class SampleOpMode_Linear extends LinearOpMode {

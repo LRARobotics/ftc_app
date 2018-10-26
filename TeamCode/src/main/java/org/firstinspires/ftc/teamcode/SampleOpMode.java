@@ -50,11 +50,14 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
+@TeleOp(name="Sample Iterative OpMode", group="Iterative Opmode")
+// A - Above, we tell it this is not autonomous.  If we want this to be active, we comment out @Disabled.
 @Disabled
 public class SampleOpMode extends OpMode
 {
     // Declare OpMode members.
+    // A - These are our variables.  We must establish them as null before writing to them.
+    // A - leftDrive and rightDrive are variables that were used in the sample OpMode I copied.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -69,16 +72,22 @@ public class SampleOpMode extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
+        // A - the first thing here is the name for motors/servos in the code
+        // A - DcMotor.class is the type of thing that it is, eg. motor/servo
+        // A - after deviceName: is the name we gave motors/servos in the config file
         leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
+        // A - this is also where we tell our servos what position they are at.
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Tell the driver that initialization is complete.
+        // A - you can add telemetry data literally anywhere in the code.  it can be nonsense if you want.
         telemetry.addData("Status", "Initialized");
+        telemetry.addData("you can make this say", "Literally anything");
     }
 
     /*
@@ -86,6 +95,8 @@ public class SampleOpMode extends OpMode
      */
     @Override
     public void init_loop() {
+        // A - I really don't know what kind of things we put here.  It seems like where we would
+        // A - put autonomous stuff, but we specified at the top this was a TeleOp OpMode.
     }
 
     /*
@@ -107,6 +118,8 @@ public class SampleOpMode extends OpMode
 
         // Choose to drive using either Tank Mode, or POV Mode
         // Comment out the method that's not used.  The default below is POV.
+        // A - This is actually really cool that FIRST set this up. Whether we use Tank or POV
+        // A - will depend on the driver's preference.
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
@@ -134,6 +147,9 @@ public class SampleOpMode extends OpMode
      */
     @Override
     public void stop() {
+        // A - This could be code to pull the robot up.  We might line the robot up with the hook
+        // A - during the final seconds of our drive period, and afterwards we would have our robot
+        // A - pull itself up using code in this loop.
     }
 
 }
